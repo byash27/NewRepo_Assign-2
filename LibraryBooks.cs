@@ -8,9 +8,9 @@ namespace cs_con_Asgn2
 {
     internal class LibraryBooks
     {
-        public int bksBorrowed;  // No of books borrowed
-        public object[,] book = new object[5, 2];  // matrix of books for size 5 x 2
-        public object[,] bookIssue = new object[3, 2]; // for a perticular user (name of the book and the issue date)matrix size 3 x 2
+        public int bksBorrowed;  
+        public object[,] book = new object[5, 2];  
+        public object[,] bookIssue = new object[3, 2];
 
         public virtual void catalogue()
         {
