@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cs_con_Asgn2
 {
-    class Student : LibraryBooks, ILib
+    class Student : LibraryBooks, Inter
     {
         public Student() : base()
         {
