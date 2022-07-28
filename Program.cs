@@ -6,23 +6,22 @@ using System.Threading.Tasks;
 
 namespace cs_con_Asgn2
 {
-    class Program
+    class Program : LibraryBooks
     {
         static void Main(string[] args)
         {
+   
             String ans = "yes";
-            Librarian ade = new Librarian();
+            Admin ade = new Admin();
             do
             {
                 Console.WriteLine("");
-                Console.WriteLine("|-----------------------------------------------------|");
-                Console.WriteLine("|---------WELCOME TO LIBRARY MANAGEMENT SYSTEM--------|");
-                Console.WriteLine("| Please login into the any of the following accounts:|");
-                Console.WriteLine("| 1.Admin                                             |");
-                Console.WriteLine("| 2.Faculty                                           |");
-                Console.WriteLine("| 3.Student                                           |");
-                Console.WriteLine("| Note: Please enter your choice accordingly          |");
-                Console.WriteLine("|-----------------------------------------------------|");
+                Console.WriteLine(":::::::::::::::::::::::::::::::::::::::::::::::::    |");
+                Console.WriteLine("|----------- LIBRARY MANAGEMENT SYSTEM-----------    |");
+                Console.WriteLine("| Choose your option:                                |");
+                Console.WriteLine("| 1.Librarian                                        |");
+                Console.WriteLine("| 2.Borrower                                         |");
+                Console.WriteLine(":::::::::::::::::::::::::::::::::::::::::::::::::    |");
                 Console.WriteLine("");
                 int ch = int.Parse(Console.ReadLine());
                 Program p = new Program();
@@ -32,29 +31,13 @@ namespace cs_con_Asgn2
                     case 1:
                         p.adm(ade);
                         break;
+
                     case 2:
-                        Console.WriteLine("Please enter your name");
-                        String name = Console.ReadLine();
-                        Console.WriteLine("Please enter your password");
-                        String pwd = Console.ReadLine();
-                        int w = ade.facchk(name, pwd);
-                        if (w == 1)
-                            p.fac(ade);
-                        else if (w == 2)
-                        {
-                            Console.WriteLine("NEW USER!!!!");
-                            ade.createFaculty(name, pwd);
-                            p.fac(ade);
-                        }
-                        else
-                            Console.WriteLine("Wrong password or username!!!!!");
-                        break;
-                    case 3:
                         Console.WriteLine("Please enter your name");
                         String nam = Console.ReadLine();
                         Console.WriteLine("Please enter your Password");
                         String pw = Console.ReadLine();
-                        int b = ade.facchk(nam, pw);
+                        int b = ade.Stuchk(nam, pw);
                         if (b == 1)
                             p.Stu(ade);
                         else if (b == 2)
@@ -77,97 +60,9 @@ namespace cs_con_Asgn2
             } while (ans.Equals("yes"));
         }
 
-        public void fac(Librarian ade)
-        {
-            String ans = "yes";
-            Faculty f = new Faculty();
-            ade.facNo += 1;
-            do
-            {
-                Console.WriteLine("");
-                Console.WriteLine("---------------------------------------------------");
-                Console.WriteLine("|       Please make a choice from the following   |");
-                Console.WriteLine("|1.Search Books                                   |");
-                Console.WriteLine("|2.Return Books                                   |");
-                Console.WriteLine("|3.Borrow Books                                   |");
-                Console.WriteLine("|4.Renew a Book                                   |");
-                Console.WriteLine("|5.View book Issue Details                        |");
-                Console.WriteLine("|6.Read Newspaper                                 |");
-                Console.WriteLine("|7.Borrow Newspaper                               |");
-                Console.WriteLine("|8.View borrowed Newspaper Details                |");
-                Console.WriteLine("|9.Return to main menu                            |");
-                Console.WriteLine("");
-                int ch = int.Parse(Console.ReadLine());
-
-                switch (ch)
-                {
-                    case 1:
-                        Console.WriteLine("Enter the name of the book");
-                        String name = Console.ReadLine();
-
-                        bool p = f.searchB(name);
-                        if (p == true)
-                            Console.WriteLine("Book found!!");
-                        else
-                            Console.WriteLine("Book not found!!");
-                        break;
-
-                    case 2:
-                        Console.WriteLine("Enter the book you want to return");
-                        String g = Console.ReadLine();
-
-                        f.returnBook(g);
-                        break;
-
-                    case 3:
-                        Console.WriteLine("Enter the name of the book");
-                        String y = Console.ReadLine();
-                        Console.WriteLine("Enter the issue date");
-                        DateTime t = Convert.ToDateTime(Console.ReadLine());
-                        f.borrow(y, t);
-                        break;
-
-                    case 4:
-                        Console.WriteLine("Enter the book to renew");
-                        String k = Console.ReadLine();
-
-                        f.renew(k);
-
-                        break;
-                    case 5:
-                        f.Details();
-                        break;
-                    case 6:
-                        Console.WriteLine("Enter the name of the newspaper");
-                        String _name = Console.ReadLine();
-                        bool s = f.searchB(_name);
-                        if (s == true)
-                            Console.WriteLine("Newspaper found!!");
-                        else
-                            Console.WriteLine("Newspaper not found!!");
-                        break;
-                    case 7:
-                        Console.WriteLine("Enter the name of the book");
-                        String c = Console.ReadLine();
-                        Console.WriteLine("Enter the issue date");
-                        DateTime d = Convert.ToDateTime(Console.ReadLine());
-                        f.borrow(c, d);
-                        break;
-                    case 8:
-                        f.Details();
-                        break;
-                    case 9:
-                        return;
 
 
-                }
-                Console.WriteLine("Do you want to continue???");
-                ans = Console.ReadLine();
-            } while (ans.Equals("yes"));
-
-        }
-
-        public void Stu(Librarian ade)
+        public void Stu(Admin ade)
         {
             String ans = "yes";
             ade.StuNo++;
@@ -176,14 +71,18 @@ namespace cs_con_Asgn2
             do
             {
                 Console.WriteLine("");
-                Console.WriteLine("---------------------------------------------");
-                Console.WriteLine("|        Please make a choice from the following  |");
-                Console.WriteLine("|1.Search Books                                   |");
+                Console.WriteLine("::::::::::::::::::::::::::::::::::::::::::::::::::|");
+                Console.WriteLine("|        Choose one option                        |");
+                Console.WriteLine("|1.See Available Books                            |");
                 Console.WriteLine("|2.Return Books                                   |");
                 Console.WriteLine("|3.Borrow Books                                   |");
-                Console.WriteLine("|4.Renew a Book                                   |");
-                Console.WriteLine("|5.View book Issue Details                        |");
-                Console.WriteLine("|6.Return to main menu                            |");
+                Console.WriteLine("|4.View Details                                   |");
+                Console.WriteLine("|5.View books                                     |");
+                Console.WriteLine("|6.View Newspaper                                 |");
+                Console.WriteLine("|7.Borrow Newspaper                               |");
+                Console.WriteLine("|8.Return Newspaper                               |");
+                Console.WriteLine("|9.Return to main menu                            |");
+                Console.WriteLine("::::::::::::::::::::::::::::::::::::::::::::::::::|");
                 Console.WriteLine("");
                 int ch = int.Parse(Console.ReadLine());
 
@@ -201,69 +100,163 @@ namespace cs_con_Asgn2
                         break;
 
                     case 2:
-                        Console.WriteLine("Enter the book you want to return");
-                        String g = Console.ReadLine();
-
-                        l.returnBook(g);
+                        Console.WriteLine("Enter the name of the book you want to return");
+                        String sn = Console.ReadLine();
+                        Console.WriteLine("Enter the no. of copies you want to return");
+                        int ner = int.Parse(Console.ReadLine());
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 2; j++)
+                            {
+                                String sd = book[i, j].ToString();
+                                if (sd.Equals(sn))
+                                {
+                                    book[i, j + 1] = (int)book[i, j + 1] + ner;
+                                    break;
+                                }
+                            }
+                        }
                         break;
 
                     case 3:
-                        Console.WriteLine("Enter the name of the book");
-                        String y = Console.ReadLine();
-                        Console.WriteLine("Enter the issue date");
+                        Console.WriteLine("Enter the name of the book you want to borrow");
+                        String sn1 = Console.ReadLine();
+                        Console.WriteLine("Enter the no. of copies you want to borrow");
+                        int n2 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter date");
                         DateTime t = Convert.ToDateTime(Console.ReadLine());
-                        l.borrow(y, t);
+                        l.borrow(sn1, t);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 1; j++)
+                            {
+                                String sd = book[i, j].ToString();
+                                if (sd.Equals(sn1))
+                                {
+                                    book[i, j + 1] = (int)book[i, j + 1] - n2;
+                                    break;
+                                }
+                            }
+                        }
+
                         break;
-
-
-
 
                     case 4:
                         l.Details();
                         break;
+
                     case 5:
+                        Console.WriteLine("Book name " + " " + "Available copies");
+
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 2; j++)
+                            {
+                                Console.Write(this.book[i, j] + "             ");
+                            }
+                            Console.WriteLine("");
+                        }
+
+                        break;
+
+                    case 6:
+                        Console.WriteLine("Newspaper name " + " " + "Available copies");
+
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 2; j++)
+                            {
+                                Console.Write(this.newsp[i, j] + "             ");
+                            }
+                            Console.WriteLine("");
+                        }
+
+                        break;
+
+
+                    case 7:
+                        Console.WriteLine("Enter the name of the newspaper");
+                        String y1 = Console.ReadLine();
+                        Console.WriteLine("Enter the no. of copies you want to remove");
+                        int n3 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the issue date");
+                        DateTime t1 = Convert.ToDateTime(Console.ReadLine());
+                        l.borrowN(y1, t1);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 1; j++)
+                            {
+                                String sd = newsp[i, j].ToString();
+                                if (sd.Equals(y1))
+                                {
+                                    newsp[i, j + 1] = (int)newsp[i, j + 1] - n3;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 8:
+                        Console.WriteLine("Enter the newspaper you want to return");
+                        String g1 = Console.ReadLine();
+                        Console.WriteLine("Enter the no. of copies you want to return");
+                        int nern = int.Parse(Console.ReadLine());
+                        l.returnN(g1);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            for (int j = 0; j < 2; j++)
+                            {
+                                String sd = newsp[i, j].ToString();
+                                if (sd.Equals(g1))
+                                {
+                                    newsp[i, j + 1] = (int)newsp[i, j + 1] + nern;
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
+                    case 9:
 
                         return;
 
 
 
                 }
-                Console.WriteLine("Do you want to continue???");
+                Console.WriteLine("Continue in LMS");
                 ans = Console.ReadLine();
             } while (ans.Equals("yes"));
 
         }
-        public void adm(Librarian ade)
+        public void adm(Admin ade)
         {
             String ans = "yes";
 
             do
             {
-                Console.WriteLine("***********");
-                Console.WriteLine("| 1.Manage Faculty              |");
-                Console.WriteLine("| 2.Manage Student              |");
-                Console.WriteLine("| 3.Maintain Books              |");
-                Console.WriteLine("| 4.Return to main menu         |");
-                Console.WriteLine("| Please enter your choice      |");
-                Console.WriteLine("***********");
+                Console.WriteLine(":::::::::::::::::::::::::::::::::: |");
+                Console.WriteLine("| 1.View Users                     |");
+                Console.WriteLine("| 2.Manage Books and Newspaper     |");
+                Console.WriteLine("| 3. Main menu                     |");
+                Console.WriteLine("| Please enter your choice         |");
+                Console.WriteLine(":::::::::::::::::::::::::::::::::::|");
                 Console.WriteLine("");
                 int ch = int.Parse(Console.ReadLine());
 
                 switch (ch)
                 {
+
                     case 1:
-                        ade.viewFac();
-                        break;
-                    case 2:
                         ade.viewStu();
                         break;
-                    case 3:
+                    case 2:
                         ade.catalogue();
                         break;
-                    case 4:
+                    case 3:
                         return;
+
                 }
-                Console.WriteLine("Do you want to continue??");
+                Console.WriteLine("Continue in LMS");
                 ans = Console.ReadLine();
             }
             while (ans.Equals("yes"));

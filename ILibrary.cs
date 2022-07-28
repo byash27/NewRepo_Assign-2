@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace cs_con_Asgn2
 {
-    public interface Inter
+    public interface ILibrary
+
     {
         bool searchB(string s);
         void borrow(string bor, DateTime t);

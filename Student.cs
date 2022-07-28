@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace cs_con_Asgn2
 {
+<<<<<<< HEAD
+    class Student : LibraryBooks, ILibrary
+=======
     class Student : LibraryBooks, Inter
+>>>>>>> e1a6d6e2d0947013edc90f3d284060c58577d3dd
     {
         public Student() : base()
         {
@@ -44,7 +48,7 @@ namespace cs_con_Asgn2
         {
             if (bor.Equals("b"))
             {
-                Console.WriteLine("SORRY!! THIS BOOK IS ONLY FOR REFERENCE.");
+                Console.WriteLine("Could not Borrow");
                 return;
             }
             Console.WriteLine(this.bksBorrowed);
@@ -56,7 +60,7 @@ namespace cs_con_Asgn2
             }
             else
             {
-                Console.WriteLine("Sorry! You cannot borrow anymore books!!!!");
+                Console.WriteLine("Could Not Borrow!!");
                 Console.WriteLine("");
             }
         }
@@ -72,24 +76,7 @@ namespace cs_con_Asgn2
                     }
                 }
             }
-            for (int i = 0; i < 1; i++)
-            {
-                for (int j = 0; j < 1; j++)
-                {
-                    if (this.bookIssue[i, j].Equals(s))
-                    {
-                        TimeSpan? f;
 
-                        f = DateTime.Today - (DateTime)this.bookIssue[i, j + 1];
-
-                        if (f?.TotalDays > 15)
-                        {
-                            Console.WriteLine("Your penalty is" + f?.TotalDays * 2);
-                            Console.WriteLine("");
-                        }
-                    }
-                }
-            }
             bksBorrowed--;
         }
         public void Details()
@@ -105,6 +92,65 @@ namespace cs_con_Asgn2
             }
 
             Console.WriteLine("");
+        }
+
+
+
+
+        public bool searchN(string s)
+        {
+            bool a = true;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    String ff = newsp[i, j].ToString();
+                    if (ff.Equals(s))
+                    {
+                        a = true;
+                        return a;
+                    }
+                    else
+                        a = false;
+                }
+            }
+            return a;
+        }
+
+        public void borrowN(String bor, DateTime t)
+        {
+            if (bor.Equals("b"))
+            {
+                Console.WriteLine("Could Not Borrow!!");
+                return;
+            }
+            Console.WriteLine(this.newBorrowed);
+            if (this.newBorrowed < 2)
+            {
+                newspIssue[this.newBorrowed, 0] = bor;
+                newspIssue[this.newBorrowed, 1] = t;
+                this.newBorrowed++;
+            }
+            else
+            {
+                Console.WriteLine("Could Not Borrow!!");
+                Console.WriteLine("");
+            }
+        }
+        public void returnN(string s)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    if (newsp[i, j].Equals(s))
+                    {
+                        newsp[i, j + 1] = (int)newsp[i, j + 1] + 1;
+                    }
+                }
+            }
+ 
+            bksBorrowed--;
         }
     }
 }
